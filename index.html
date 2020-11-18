@@ -28,9 +28,16 @@
             };
 
             console.log(data)
-            $http({method: "POST", url: 'http://3.134.244.81:5000/bet', data: JSON.stringify(data), headers: {"Content-Type": "json/application"}}).then(function (response) {
+		$http({method: "POST", url: 'http://3.134.244.81:5000/bet', data: JSON.stringify(data), headers: {"Content-Type": "application/json"}}).then(function (response) {
                 if (response.data) 
                     $scope.msg = "Post data submitted successfully!";
+		    $scope.bonus = parseInt(response.data.bonus);
+		    $scope.crossBet = parseInt(response.data.crossBet) + $scope.bonus;
+		    $scope.oneBet = response.data.oneBet;
+		    $scope.twoBet = response.data.twoBet;
+		    $scope.winningsOnCross = response.data.winningsOnCross;
+		    $scope.winningsOnOne = response.data.winningsOnOne;
+		    $scope.winningsOnTwo = response.data.winningsOnTwo;
                 }, function (response) {
                     $scope.msg = "Service does not exist";
                     $scope.statusval = response.status;
@@ -90,7 +97,15 @@
 
         <div>
             <p>Output message: {{msg}}</p>
-            <p>Return text: {{statusval}}</p>
+	    <p>With a bonus of: {{bonus}} sek</p>
+	    <p>You should bet:</p>
+	    <p>1: {{oneBet}} sek</p>
+	    <p>X: {{crossBet}} sek</p>
+	    <p>2: {{twoBet}} sek</p>
+	    <p>You will win:</p>
+	    <p>1: {{winningsOnOne}} sek </p>
+	    <p>X: {{winningsOnCross}} sek</p>
+	    <p>2: {{winningsOnTwo}} sek<p>
         </div>
 </div>
 </div>
