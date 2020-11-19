@@ -11,7 +11,7 @@ def create_config():
     app = app.replace("<PLACEHOLDER_PUBLIC_HOST>", URL)
 
     with open("app.js", "w") as app_file:
-        app_file.write(index)
+        app_file.write(app)
 
 if __name__ == '__main__':
     create_config()
