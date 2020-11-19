@@ -16,23 +16,11 @@
     //that would prevent CORS from working
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
-   var url = "0.0.0.0"
-   app.controller('getserviceCtrl', function ($scope, $http) {
-            $http({
-                    method: "GET",
-                    url: "http://169.254.169.254/latest/meta-data/public-hostname"}).then(function successCallBack(response) {
-                            console.log(response.text)
-                            console.log(response)
-                            console.log(response.data)
-                            var publicHostname = response.data
-                            url = `http://${publicHostname}:5000/bet`
-                        }, function errorCallback(response) {
-				console.log("WTF")
-                                $scope.msg = response.text
-                                url = "0.0.0.0"
-                        });
-   });
 
+    let url = "0.0.0.0"
+    $.getJSON("config.json", function(json) {
+    	url = json.url
+    });
 
     app.controller('postserviceCtrl', function ($scope, $http) {
 	//requests.get("http://169.254.169.254/latest/meta-data/public-hostname").text
@@ -50,7 +38,7 @@
             };
 
             console.log(data)
-		$http({method: "POST", url: url, data: JSON.stringify(data), headers: {"Content-Type": "application/json"}}).then(function (response) {
+		$http({method: "POST", url: `${url}:5000/bet`, data: JSON.stringify(data), headers: {"Content-Type": "application/json"}}).then(function (response) {
                 if (response.data) 
                     $scope.msg = "Post data submitted successfully!";
 		    $scope.bonus = parseInt(response.data.bonus);
