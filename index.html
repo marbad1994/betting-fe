@@ -16,6 +16,7 @@
     //that would prevent CORS from working
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
+   var url = "0.0.0.0"
    app.controller('getserviceCtrl', function ($scope, $http) {
             $http({
                     method: "GET",
@@ -26,6 +27,7 @@
                             var publicHostname = response.data
                             url = `http://${publicHostname}:5000/bet`
                         }, function errorCallback(response) {
+				console.log("WTF")
                                 $scope.msg = response.text
                                 url = "0.0.0.0"
                         });
