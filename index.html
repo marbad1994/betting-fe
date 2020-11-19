@@ -60,16 +60,21 @@
             </div>
 
             <div ng-hide="hide">
+                <ul class="list-group">
+                    <li class="list-group-item disabled" aria-disabled="true"> <strong>With a bonus of: {{bonus}} sek</strong></li>
+                    <li class="list-group-item"><strong>You should bet:</strong>
+                    </li>
+                    <li class="list-group-item"><strong>1:</strong> {{oneBet}} sek</li>
+                    <li class="list-group-item"><strong>X:</strong> {{crossBet}} sek</li>
+                    <li class="list-group-item"><strong>2:</strong> {{twoBet}} seks</li>
+                    <li class="list-group-item"><strong>You will win:</strong>
+                    </li>
+                    <li class="list-group-item"><strong>1:</strong> {{winningsOnOne}} sek</li>
+                    <li class="list-group-item"><strong>X:</strong> {{winningsOnCross}} sek</li>
+                    <li class="list-group-item"><strong>2:</strong> {{winningsOnTwo}} sek</li>
+                </ul>
 
-                <p>With a bonus of: {{bonus}} sek</p>
-                <p>You should bet:</p>
-                <p>1: {{oneBet}} sek</p>
-                <p>X: {{crossBet}} sek</p>
-                <p>2: {{twoBet}} sek</p>
-                <p>You will win:</p>
-                <p>1: {{winningsOnOne}} sek </p>
-                <p>X: {{winningsOnCross}} sek</p>
-                <p>2: {{winningsOnTwo}} sek </p>
+
             </div>
         </div>
     </div>
