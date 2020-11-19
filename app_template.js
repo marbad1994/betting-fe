@@ -34,7 +34,7 @@ app.controller('postserviceCtrl', function($scope, $http) {
         console.log(data)
         $http({
             method: "POST",
-            url: `${url}:5000/bet`,
+            url: url,
             data: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json"
