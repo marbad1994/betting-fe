@@ -76,12 +76,5 @@ app.controller('postserviceCtrl', function($scope, $http) {
 
 function buttonHideToggle() {
     var x = document.getElementById("output-message");
-    var y = document.getElementById("output-button")
-    if (x.style.display === "none") {
-        x.style.display = "block";
-        y.style.display = "block";
-    } else {
-        x.style.display = "none";
-        y.style.display = "none";
-    }
+    x.classList.toggle("hide");
 }
