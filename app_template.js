@@ -72,23 +72,16 @@ app.controller('postserviceCtrl', function($scope, $http) {
 
 
 
-    // $scope.buttonHideToggle = function($scope) {
-    //     if ($scope.buttonHide == true) {
-    //         console.log("FDFDF")
-    //         $scope.buttonHide = false;
-    //     } else {
-    //         console.log("fdsfsd")
-    //         $scope.buttonHide = true;
-    //     }
-    // }
-
 })
 
 function buttonHideToggle() {
     var x = document.getElementById("output-message");
+    var y = document.getElementById("output-button")
     if (x.style.display === "none") {
         x.style.display = "block";
+        y.style.display = "block";
     } else {
         x.style.display = "none";
+        y.style.display = "none";
     }
 }
