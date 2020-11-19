@@ -28,10 +28,8 @@ app.controller('postserviceCtrl', function($scope, $http) {
         };
         if (safe === true) {
             url_api = `${url}:5000/safebet`
-            console.log("SAFE")
         } else {
             url_api = `${url}:5000/bet`
-            console.log("NOTSAFE")
         }
 
         console.log(data)
@@ -44,7 +42,7 @@ app.controller('postserviceCtrl', function($scope, $http) {
             }
         }).then(function(response) {
             if (response.data)
-                $scope.msg = "Post data submitted successfully!";
+                $scope.msg = response.data.msg;
             $scope.bonus = parseInt(response.data.bonus);
             $scope.crossBet = parseInt(response.data.crossBet) + $scope.bonus;
             $scope.oneBet = response.data.oneBet;
