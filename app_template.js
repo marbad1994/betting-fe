@@ -16,7 +16,6 @@ app.controller('postserviceCtrl', function($scope, $http) {
     $scope.two = null;
     $scope.bonus = null;
     $scope.postdata = function(one, cross, two, bonus, safe) {
-        $scope.hide = false;
         if (bonus === null) {
             bonus = 500;
         };
@@ -40,25 +39,18 @@ app.controller('postserviceCtrl', function($scope, $http) {
                 "Content-Type": "application/json"
             }
         }).then(function(response) {
-            if (response.data)
+            if (response.data.status == 200) {
+                $scope.hide = false;
                 $scope.msg = response.data.msg;
-            $scope.bonus = parseInt(response.data.bonus);
-            $scope.crossBet = parseInt(response.data.crossBet) + $scope.bonus;
-            $scope.oneBet = response.data.oneBet;
-            $scope.twoBet = response.data.twoBet;
-            $scope.winningsOnCross = response.data.winningsOnCross;
-            $scope.winningsOnOne = response.data.winningsOnOne;
-            $scope.winningsOnTwo = response.data.winningsOnTwo;
-            if (response.data.status == 301) {
-                $scope.hide = true;
-                /*$scope.bonus = null;
-                $scope.crossBet = null;
-                $scope.oneBet = null;
-                $scope.twoBet = null;
-                $scope.winningsOnCross = null;
-                $scope.winningsOnOne = null;
-                $scope.winningsOnTwo = null;*/
+                $scope.bonus = parseInt(response.data.bonus);
+                $scope.crossBet = parseInt(response.data.crossBet) + $scope.bonus;
+                $scope.oneBet = response.data.oneBet;
+                $scope.twoBet = response.data.twoBet;
+                $scope.winningsOnCross = response.data.winningsOnCross;
+                $scope.winningsOnOne = response.data.winningsOnOne;
+                $scope.winningsOnTwo = response.data.winningsOnTwo;
             }
+
         }, function(response) {
             $scope.msg = "Service does not exist";
             $scope.statusval = response.status;
