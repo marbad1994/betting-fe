@@ -17,6 +17,9 @@ app.controller('postserviceCtrl', function($scope, $http) {
     $scope.bonus = null;
     $scope.postdata = function(one, cross, two, bonus, safe) {
         $scope.hide = false;
+        if (bonus === null) {
+            bonus = 500;
+        };
         var data = {
             "1": one,
             "X": cross,
@@ -24,17 +27,17 @@ app.controller('postserviceCtrl', function($scope, $http) {
             "bonus": bonus
         };
         if (safe === true) {
-            url = `${url}:5000/safebet`
+            url_api = `${url}:5000/safebet`
             console.log("SAFE")
         } else {
-            url = `${url}:5000/bet`
+            url_api = `${url}:5000/bet`
             console.log("NOTSAFE")
         }
 
         console.log(data)
         $http({
             method: "POST",
-            url: url,
+            url: url_api,
             data: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json"
