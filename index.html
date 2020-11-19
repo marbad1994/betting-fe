@@ -30,11 +30,11 @@
                 <br>
                 <div class="row">
                     <div class="col">
-                        <select class="form-control">
-                        <option>Choose</option>
-                        <option ng-model="bonus">500</option>
-                        <option ng-model="bonus">1000</option>
-                        <option ng-model="bonus">2000</option>
+                        <select ng-model="bonus" class="form-control">
+                        <option ng-selected="bonus==500">Choose</option>
+                        <option ng-selected="bonus==500">500</option>
+                        <option ng-selected="bonus==1000">1000</option>
+                        <option ng-selected="bonus==2000">2000</option>
                       </select>
                     </div>
                     <div class="col">
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <input value="Submit" ng-click="postdata(one, cross, two, bonus=500, safe)" class="btn btn-lg btn-success" />
+                        <input value="Submit" ng-click="postdata(one, cross, two, bonus, safe)" class="btn btn-lg btn-success" />
                     </div>
                 </div>
             </form>
