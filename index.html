@@ -26,7 +26,7 @@
 			    console.log(response.data)
 			    var publicHostname = response.text
 			    url = `http://${publicHostname}:5000/bet`
-			}, functionerrorCallback(response) {
+			}, function errorCallback(response) {
 				$scope.msg = response.text
 				url = "0.0.0.0"
 			});
