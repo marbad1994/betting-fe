@@ -32,7 +32,6 @@ app.controller('postserviceCtrl', function($scope, $http) {
             url_api = `${url}:5000/bet`
         }
 
-        console.log(data)
         $http({
             method: "POST",
             url: url_api,
@@ -50,6 +49,15 @@ app.controller('postserviceCtrl', function($scope, $http) {
             $scope.winningsOnCross = response.data.winningsOnCross;
             $scope.winningsOnOne = response.data.winningsOnOne;
             $scope.winningsOnTwo = response.data.winningsOnTwo;
+            if (response.data.status == 301) {
+                $scope.bonus = null;
+                $scope.crossBet = null;
+                $scope.oneBet = null;
+                $scope.twoBet = null;
+                $scope.winningsOnCross = null;
+                $scope.winningsOnOne = null;
+                $scope.winningsOnTwo = null;
+            }
         }, function(response) {
             $scope.msg = "Service does not exist";
             $scope.statusval = response.status;
