@@ -18,7 +18,7 @@
 });
 
     let url = "0.0.0.0"
-    fetch("./config.json")
+    fetch("/usr/share/nginx/html/config.json")
 	.then(response => response.json())
 	.then(json => url = json.url);
 
