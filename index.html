@@ -51,9 +51,13 @@
                 </div>
             </form>
 
-            <div>
-                <p>Output message: {{msg}}</p>
+            <div id="output-message" style="height: 50px; display: none;" class="alert alert-dismissible fade show" role="alert">
+                {{msg}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="buttonHideToggle()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+
             <div ng-hide="hide">
 
                 <p>With a bonus of: {{bonus}} sek</p>

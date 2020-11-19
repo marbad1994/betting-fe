@@ -10,12 +10,15 @@ app.config(function($httpProvider) {
 
 let url = "<PLACEHOLDER_PUBLIC_HOST>"
 app.controller('postserviceCtrl', function($scope, $http) {
-    $scope.hide = true
+    $scope.hide = true;
+    buttonHideToggle();
     $scope.one = null;
     $scope.cross = null;
     $scope.two = null;
     $scope.bonus = null;
+
     $scope.postdata = function(one, cross, two, bonus, safe) {
+        $scope.buttonHide = false;
         if (bonus === null) {
             bonus = 500;
         };
@@ -40,8 +43,10 @@ app.controller('postserviceCtrl', function($scope, $http) {
             }
         }).then(function(response) {
             if (response.data) {
+                document.getElementById("output-message").className = "alert-warning";
                 $scope.msg = response.data.msg;
                 if (response.data.status == 200) {
+                    document.getElementById("output-message").className = "alert-success";
                     $scope.hide = false;
                     $scope.bonus = parseInt(response.data.bonus);
                     $scope.crossBet = parseInt(response.data.crossBet) + $scope.bonus;
@@ -54,11 +59,36 @@ app.controller('postserviceCtrl', function($scope, $http) {
             }
 
         }, function(response) {
+            document.getElementById("output-message").className = "alert-danger";
             $scope.msg = "Service does not exist";
             $scope.statusval = response.status;
             $scope.statustext = response.msg;
             $scope.headers = response.headers();
 
         })
+
+
     }
+
+
+
+    // $scope.buttonHideToggle = function($scope) {
+    //     if ($scope.buttonHide == true) {
+    //         console.log("FDFDF")
+    //         $scope.buttonHide = false;
+    //     } else {
+    //         console.log("fdsfsd")
+    //         $scope.buttonHide = true;
+    //     }
+    // }
+
 })
+
+function buttonHideToggle() {
+    var x = document.getElementById("output-message");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
