@@ -18,9 +18,9 @@
 });
 
     let url = "0.0.0.0"
-    $.getJSON("config.json", function(json) {
-    	url = json.url
-    });
+    fetch("./config.json")
+	.then(response => response.json())
+	.then(json => url = json.url);
 
     app.controller('postserviceCtrl', function ($scope, $http) {
 	//requests.get("http://169.254.169.254/latest/meta-data/public-hostname").text
