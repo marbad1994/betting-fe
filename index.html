@@ -17,7 +17,21 @@
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
     app.controller('postserviceCtrl', function ($scope, $http) {
-        $scope.one = null;
+	//requests.get("http://169.254.169.254/latest/meta-data/public-hostname").text
+	    $http({
+		    method: "GET",
+		    url: "http://169.254.169.254/latest/meta-data/public-hostname"}).then(function successCallBack(response) {
+			    console.log(response.text)
+			    console.log(response)
+			    console.log(response.data)
+			    var publicHostname = response.text
+			    url = `http://${publicHostname}:5000/bet`
+			}, functionerrorCallback(response) {
+				$scope.msg = response.text
+				url = "0.0.0.0"
+			});
+
+	$scope.one = null;
         $scope.cross = null;
         $scope.two = null;
         $scope.bonus = null;
@@ -30,7 +44,7 @@
             };
 
             console.log(data)
-		$http({method: "POST", url: 'http://ec2-18-218-94-13.us-east-2.compute.amazonaws.com:5000/bet', data: JSON.stringify(data), headers: {"Content-Type": "application/json"}}).then(function (response) {
+		$http({method: "POST", url: url, data: JSON.stringify(data), headers: {"Content-Type": "application/json"}}).then(function (response) {
                 if (response.data) 
                     $scope.msg = "Post data submitted successfully!";
 		    $scope.bonus = parseInt(response.data.bonus);
