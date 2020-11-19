@@ -16,20 +16,22 @@
     //that would prevent CORS from working
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
+            $http({
+                    method: "GET",
+                    url: "http://169.254.169.254/latest/meta-data/public-hostname"}).then(function successCallBack(response) {
+                            console.log(response.text)
+                            console.log(response)
+                            console.log(response.data)
+                            var publicHostname = response.text
+                            url = `http://${publicHostname}:5000/bet`
+                        }, function errorCallback(response) {
+                                $scope.msg = response.text
+                                url = "0.0.0.0"
+                        });
+
+
     app.controller('postserviceCtrl', function ($scope, $http) {
 	//requests.get("http://169.254.169.254/latest/meta-data/public-hostname").text
-	    $http({
-		    method: "GET",
-		    url: "http://169.254.169.254/latest/meta-data/public-hostname"}).then(function successCallBack(response) {
-			    console.log(response.text)
-			    console.log(response)
-			    console.log(response.data)
-			    var publicHostname = response.text
-			    url = `http://${publicHostname}:5000/bet`
-			}, function errorCallback(response) {
-				$scope.msg = response.text
-				url = "0.0.0.0"
-			});
 
 	$scope.one = null;
         $scope.cross = null;
