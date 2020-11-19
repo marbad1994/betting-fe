@@ -30,7 +30,7 @@
             };
 
             console.log(data)
-		$http({method: "POST", url: 'http://3.134.244.81:5000/bet', data: JSON.stringify(data), headers: {"Content-Type": "application/json"}}).then(function (response) {
+		$http({method: "POST", url: 'http://18.218.94.13:5000/bet', data: JSON.stringify(data), headers: {"Content-Type": "application/json"}}).then(function (response) {
                 if (response.data) 
                     $scope.msg = "Post data submitted successfully!";
 		    $scope.bonus = parseInt(response.data.bonus);
