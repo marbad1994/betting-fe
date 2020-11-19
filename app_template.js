@@ -39,16 +39,18 @@ app.controller('postserviceCtrl', function($scope, $http) {
                 "Content-Type": "application/json"
             }
         }).then(function(response) {
-            if (response.data.status == 200) {
-                $scope.hide = false;
+            if (response.data) {
                 $scope.msg = response.data.msg;
-                $scope.bonus = parseInt(response.data.bonus);
-                $scope.crossBet = parseInt(response.data.crossBet) + $scope.bonus;
-                $scope.oneBet = response.data.oneBet;
-                $scope.twoBet = response.data.twoBet;
-                $scope.winningsOnCross = response.data.winningsOnCross;
-                $scope.winningsOnOne = response.data.winningsOnOne;
-                $scope.winningsOnTwo = response.data.winningsOnTwo;
+                if (response.data.status == 200) {
+                    $scope.hide = false;
+                    $scope.bonus = parseInt(response.data.bonus);
+                    $scope.crossBet = parseInt(response.data.crossBet) + $scope.bonus;
+                    $scope.oneBet = response.data.oneBet;
+                    $scope.twoBet = response.data.twoBet;
+                    $scope.winningsOnCross = response.data.winningsOnCross;
+                    $scope.winningsOnOne = response.data.winningsOnOne;
+                    $scope.winningsOnTwo = response.data.winningsOnTwo;
+                }
             }
 
         }, function(response) {
