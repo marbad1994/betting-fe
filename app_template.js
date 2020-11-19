@@ -50,13 +50,14 @@ app.controller('postserviceCtrl', function($scope, $http) {
             $scope.winningsOnOne = response.data.winningsOnOne;
             $scope.winningsOnTwo = response.data.winningsOnTwo;
             if (response.data.status == 301) {
-                $scope.bonus = null;
+                $scope.hide = true;
+                /*$scope.bonus = null;
                 $scope.crossBet = null;
                 $scope.oneBet = null;
                 $scope.twoBet = null;
                 $scope.winningsOnCross = null;
                 $scope.winningsOnOne = null;
-                $scope.winningsOnTwo = null;
+                $scope.winningsOnTwo = null;*/
             }
         }, function(response) {
             $scope.msg = "Service does not exist";
