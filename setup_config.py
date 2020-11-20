@@ -4,7 +4,7 @@ import requests
 URL = "http://" + requests.get("http://169.254.169.254/latest/meta-data/public-hostname").text
 
 def create_config():
-    with open("app_template.js", "r") as app_template_file:
+    with open("app.js", "r") as app_template_file:
         app = app_template_file.read()
 
 

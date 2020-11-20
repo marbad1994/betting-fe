@@ -10,13 +10,18 @@ app.config(function($httpProvider) {
 
 let url = "<PLACEHOLDER_PUBLIC_HOST>"
 app.controller('postserviceCtrl', function($scope, $http) {
-    $scope.hide = true
+    $scope.hide = true;
+    buttonHideToggle();
     $scope.one = null;
     $scope.cross = null;
     $scope.two = null;
     $scope.bonus = null;
+
     $scope.postdata = function(one, cross, two, bonus, safe) {
-        $scope.hide = false;
+        $scope.hide = true;
+        if (bonus === null) {
+            bonus = 500;
+        };
         var data = {
             "1": one,
             "X": cross,
@@ -24,37 +29,52 @@ app.controller('postserviceCtrl', function($scope, $http) {
             "bonus": bonus
         };
         if (safe === true) {
-            url = `${url}:5000/safebet`
-            console.log("SAFE")
+            url_api = `${url}:5000/safebet`
         } else {
-            url = `${url}:5000/bet`
-            console.log("NOTSAFE")
+            url_api = `${url}:5000/bet`
         }
 
-        console.log(data)
         $http({
             method: "POST",
-            url: `${url}:5000/bet`,
+            url: url_api,
             data: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json"
             }
         }).then(function(response) {
-            if (response.data)
-                $scope.msg = "Post data submitted successfully!";
-            $scope.bonus = parseInt(response.data.bonus);
-            $scope.crossBet = parseInt(response.data.crossBet) + $scope.bonus;
-            $scope.oneBet = response.data.oneBet;
-            $scope.twoBet = response.data.twoBet;
-            $scope.winningsOnCross = response.data.winningsOnCross;
-            $scope.winningsOnOne = response.data.winningsOnOne;
-            $scope.winningsOnTwo = response.data.winningsOnTwo;
+            if (response.data) {
+                document.getElementById("output-message").className = "alert-warning";
+                $scope.msg = response.data.msg;
+                if (response.data.status == 200) {
+                    document.getElementById("output-message").className = "alert-success";
+                    $scope.hide = false;
+                    $scope.bonusAmount = parseInt(response.data.bonus);
+                    $scope.crossBet = parseInt(response.data.crossBet) + $scope.bonusAmount;
+                    $scope.oneBet = response.data.oneBet;
+                    $scope.twoBet = response.data.twoBet;
+                    $scope.winningsOnCross = response.data.winningsOnCross;
+                    $scope.winningsOnOne = response.data.winningsOnOne;
+                    $scope.winningsOnTwo = response.data.winningsOnTwo;
+                }
+            }
+
         }, function(response) {
+            document.getElementById("output-message").className = "alert-danger";
             $scope.msg = "Service does not exist";
             $scope.statusval = response.status;
             $scope.statustext = response.msg;
             $scope.headers = response.headers();
 
         })
+
+
     }
+
+
+
 })
+
+function buttonHideToggle() {
+    var x = document.getElementById("output-message");
+    x.classList.toggle("hide");
+}
