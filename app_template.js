@@ -48,8 +48,8 @@ app.controller('postserviceCtrl', function($scope, $http) {
                 if (response.data.status == 200) {
                     document.getElementById("output-message").className = "alert-success";
                     $scope.hide = false;
-                    $scope.bonus = parseInt(response.data.bonus);
-                    $scope.crossBet = parseInt(response.data.crossBet) + $scope.bonus;
+                    $scope.bonusAmount = parseInt(response.data.bonus);
+                    $scope.crossBet = parseInt(response.data.crossBet) + $scope.bonusAmount;
                     $scope.oneBet = response.data.oneBet;
                     $scope.twoBet = response.data.twoBet;
                     $scope.winningsOnCross = response.data.winningsOnCross;
