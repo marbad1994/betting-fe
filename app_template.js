@@ -18,7 +18,6 @@ app.controller('postserviceCtrl', function($scope, $http) {
     $scope.bonus = null;
 
     $scope.postdata = function(one, cross, two, bonus, safe) {
-        $scope.buttonHide = false;
         if (bonus === null) {
             bonus = 500;
         };
