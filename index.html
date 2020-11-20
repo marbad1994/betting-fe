@@ -60,7 +60,7 @@
                 </button>
             </div>
 
-            <div ng-hide="hide">
+            <div ng-hide="hide" style="margin-bottom: 15px">
                 <ul class="list-group">
                     <li class="list-group-item disabled" aria-disabled="true"> <strong>With a bonus of: {{bonusAmount}} sek</strong></li>
                     <li class="list-group-item"><strong>You should bet:</strong>
@@ -77,6 +77,39 @@
 
 
             </div>
+
+            <!-- Button trigger modal -->
+            <div style="margin-bottom: 50px;">
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+    How does it work?
+  </button>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">How does it work?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                        </div>
+                        <div class="modal-body">
+                            <Strong>How is it possible to win every time?</Strong>
+                            <br/><br/> With the a little help from our friends at the betting companies we can actaully get in a situation where it's impossible to lose money. That situation is calculated by the algorithm, the basic idea is to win back
+                            the bonus (or more) through another account. The app will tell you how much you should bet on 1, X, 2. The bonus should always be bet at X and the sum thats presented in the app includes the bonus.
+                            <br/><br/>
+                            <Strong>Whats's the differens between ordinary bet and safe bet?</Strong>
+                            <br/><br/> The ordinary bet is prioritized for the bet with the lowest odds to win and therefor the win is bigger. Safe bet is taking unlikley events into the priority so you would win on both 1 and 2, not just as much.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </body>
